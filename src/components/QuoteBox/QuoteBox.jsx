@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import './QuoteBox.styles.scss';
 
 class QuoteBox extends Component {
   constructor(props) {
@@ -16,9 +18,13 @@ class QuoteBox extends Component {
   }
 
   fetchQuote() {
+    const { changeColor } = this.props;
     fetch('https://api.quotable.io/random')
       .then((response) => response.json())
-      .then((data) => this.changeQuote(data.content, data.author));
+      .then((data) => {
+        changeColor();
+        this.changeQuote(data.content, data.author);
+      });
   }
 
   changeQuote(quote, author) {
@@ -27,17 +33,21 @@ class QuoteBox extends Component {
 
   render() {
     const { quote, author } = this.state;
+    const { bgColor } = this.props;
     const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${quote}" - ${author}`;
     const tumblrLink = `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=${author}&content=${quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons`;
 
     return (
       <div id="quote-box">
         <h1 id="text">{quote}</h1>
-        <span id="author">{author}</span>
+        <p id="author">{`- ${author}`}</p>
         <div id="buttons">
           <div id="share">
             <a
               href={twitterLink}
+              style={{ backgroundColor: bgColor }}
+              className="button"
+              role="button"
               target="_blank"
               rel="noreferrer"
               id="tweet-quote"
@@ -46,6 +56,9 @@ class QuoteBox extends Component {
             </a>
             <a
               href={tumblrLink}
+              style={{ backgroundColor: bgColor }}
+              className="button"
+              role="button"
               target="_blank"
               rel="noreferrer"
               id="tumblr-quote"
@@ -53,7 +66,12 @@ class QuoteBox extends Component {
               Post Quote on Tumblr
             </a>
           </div>
-          <button type="button" onClick={this.fetchQuote}>
+          <button
+            type="button"
+            style={{ backgroundColor: bgColor }}
+            className="button"
+            onClick={this.fetchQuote}
+          >
             New quote
           </button>
         </div>
@@ -61,5 +79,10 @@ class QuoteBox extends Component {
     );
   }
 }
+
+QuoteBox.propTypes = {
+  bgColor: PropTypes.string.isRequired,
+  changeColor: PropTypes.func.isRequired,
+};
 
 export default QuoteBox;

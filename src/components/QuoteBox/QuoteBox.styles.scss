@@ -1,0 +1,47 @@
+#quote-box {
+  background-color: white;
+  width: 60%;
+  padding: 3em;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  #text {
+    text-align: center;
+    margin: 0;
+  }
+
+  #author {
+    text-align: right;
+    margin: 2em 0;
+  }
+
+  #buttons {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #share {
+      a {
+        float: left;
+        height: 2em;
+        margin-right: 1em;
+        padding: 1em 1em 0;
+        text-decoration: none;
+      }
+    }
+
+    button {
+      height: 3em;
+      padding: 0 1em;
+      outline: none;
+    }
+  }
+}
