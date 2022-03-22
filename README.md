@@ -2,7 +2,7 @@
 
 ## Explanation
 
-I have to create 5 applications in order to earn the Front End Development certification delivered by FreeCodeCamp. This repository is the first one : Random Quote Machine. You can [read the specifications](https://github.com/lamai6/random-quote-machine#specifications) the app must meet or [run it](https://github.com/lamai6/random-quote-machine#specifications).
+I have to create 5 projects in order to earn the Front End Development certification delivered by FreeCodeCamp. This repository is the first one : Random Quote Machine. I used [my own React boilerplate](https://github.com/lamai6/react-app-starter) to start creating this application. You can [read the specifications](https://github.com/lamai6/random-quote-machine#specifications) the app must meet or [run it](https://github.com/lamai6/random-quote-machine#quick-start).
 
 ## Quick start
 
@@ -12,7 +12,7 @@ I have to create 5 applications in order to earn the Front End Development certi
 4. Run `npm install` in order to install dependencies
 5. At this point you can run `npm start` to see the React app at http://localhost:8080
 
-## Specifications
+## [Specifications](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine)
 
 Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/qRZeGZ.
 
