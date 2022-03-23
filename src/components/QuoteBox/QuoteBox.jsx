@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './QuoteBox.styles.scss';
 
 class QuoteBox extends Component {
@@ -35,7 +37,7 @@ class QuoteBox extends Component {
     const { quote, author } = this.state;
     const { bgColor } = this.props;
     const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${quote}" - ${author}`;
-    const tumblrLink = `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=${author}&content=${quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons`;
+    const tumblrLink = `https://tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=${author}&content=${quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons`;
 
     return (
       <div id="quote-box">
@@ -52,7 +54,7 @@ class QuoteBox extends Component {
               rel="noreferrer"
               id="tweet-quote"
             >
-              Tweet Quote
+              <FontAwesomeIcon icon={brands('twitter')} size="lg" />
             </a>
             <a
               href={tumblrLink}
@@ -63,7 +65,7 @@ class QuoteBox extends Component {
               rel="noreferrer"
               id="tumblr-quote"
             >
-              Post Quote on Tumblr
+              <FontAwesomeIcon icon={brands('tumblr')} size="lg" />
             </a>
           </div>
           <button
