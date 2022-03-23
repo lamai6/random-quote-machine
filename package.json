@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "jest --coverage",
     "lint": "eslint .",
     "lint-debug": "npm run lint -- --debug",
@@ -24,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/lamai6/random-quote-machine/issues"
   },
-  "homepage": "https://github.com/lamai6/random-quote-machine#readme",
+  "homepage": "https://lamai6.github.io/random-quote-machine",
   "dependencies": {
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -51,6 +53,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
     "node-sass": "^7.0.1",
