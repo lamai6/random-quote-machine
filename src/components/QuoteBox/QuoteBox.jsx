@@ -86,6 +86,7 @@ class QuoteBox extends Component {
             style={{ backgroundColor: bgColor }}
             className="button"
             onClick={this.fetchQuote}
+            id="new-quote"
           >
             New quote
           </button>
