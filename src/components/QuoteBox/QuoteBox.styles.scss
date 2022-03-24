@@ -9,11 +9,19 @@
   #text {
     text-align: center;
     margin: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
   }
 
   #author {
     text-align: right;
     margin: 2em 0;
+    opacity: 0;
+  }
+
+  .change {
+    opacity: 1 !important;
+    transition: opacity 0.5s ease-in !important;
   }
 
   #buttons {
@@ -26,6 +34,7 @@
       border-radius: 5px;
       color: white;
       cursor: pointer;
+      transition: background-color 1s;
     }
 
     #share {

@@ -10,6 +10,7 @@ class QuoteBox extends Component {
     this.state = {
       quote: '',
       author: '',
+      opacity: 1,
     };
     this.fetchQuote = this.fetchQuote.bind(this);
     this.changeQuote = this.changeQuote.bind(this);
@@ -21,28 +22,40 @@ class QuoteBox extends Component {
 
   fetchQuote() {
     const { changeColor } = this.props;
-    fetch('https://api.quotable.io/random')
-      .then((response) => response.json())
-      .then((data) => {
-        changeColor();
-        this.changeQuote(data.content, data.author);
-      });
+    changeColor();
+    this.changeOpacity();
+    setTimeout(() => {
+      fetch('https://api.quotable.io/random')
+        .then((response) => response.json())
+        .then((data) => {
+          this.changeQuote(data.content, data.author);
+          this.changeOpacity();
+        });
+    }, 300);
   }
 
   changeQuote(quote, author) {
     this.setState({ quote, author });
   }
 
+  changeOpacity() {
+    this.setState((state) => ({ opacity: !state.opacity }));
+  }
+
   render() {
-    const { quote, author } = this.state;
+    const { quote, author, opacity } = this.state;
     const { bgColor } = this.props;
     const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&text="${quote}" - ${author}`;
     const tumblrLink = `https://tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=${author}&content=${quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons`;
 
     return (
       <div id="quote-box">
-        <h1 id="text">{quote}</h1>
-        <p id="author">{`- ${author}`}</p>
+        <h1 className={opacity ? 'change' : ''} id="text">
+          {quote}
+        </h1>
+        <p className={opacity ? 'change' : ''} id="author">
+          {`- ${author}`}
+        </p>
         <div id="buttons">
           <div id="share">
             <a
