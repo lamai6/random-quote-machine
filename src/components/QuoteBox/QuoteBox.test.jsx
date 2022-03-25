@@ -15,11 +15,23 @@ beforeAll(() => {
   );
 });
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
+});
+
 describe('QuoteBox component tests', () => {
   it('should generate quote when component is mounted', async () => {
-    const { container, findByRole } = render(<QuoteBox />);
+    const { container, findByRole } = render(
+      <QuoteBox bgColor="#333" changeColor={() => '#444'} />
+    );
+    jest.advanceTimersByTime(500);
     const quote = await findByRole('heading');
-    const author = container.querySelector('span[id=author]');
+    const author = container.querySelector('p[id=author]');
 
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(quote).toHaveTextContent(/Make the most/);
@@ -27,7 +39,9 @@ describe('QuoteBox component tests', () => {
   });
 
   it('should update quote when clicking on button', async () => {
-    const { container, findByRole } = render(<QuoteBox />);
+    const { container, findByRole } = render(
+      <QuoteBox bgColor="#333" changeColor={() => '#444'} />
+    );
     const newQuoteButton = await findByRole('button', { name: 'New quote' });
 
     global.fetch = jest.fn(() =>
@@ -40,11 +54,12 @@ describe('QuoteBox component tests', () => {
       })
     );
 
+    jest.advanceTimersByTime(500);
     fireEvent.click(newQuoteButton);
     const quote = await findByRole('heading');
-    const author = container.querySelector('span[id=author]');
+    const author = container.querySelector('p[id=author]');
 
-    expect(quote).toHaveTextContent(/They can do/);
+    expect(quote).toHaveTextContent(/They can do all because/);
     expect(author).toHaveTextContent('Virgil');
   });
 });

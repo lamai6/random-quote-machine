@@ -11,6 +11,7 @@ class QuoteBox extends Component {
       quote: '',
       author: '',
       opacity: 1,
+      timeoutId: '',
     };
     this.fetchQuote = this.fetchQuote.bind(this);
     this.changeQuote = this.changeQuote.bind(this);
@@ -20,18 +21,27 @@ class QuoteBox extends Component {
     this.fetchQuote();
   }
 
-  fetchQuote() {
+  componentWillUnmount() {
+    const { timeoutId } = this.state;
+    clearTimeout(timeoutId);
+  }
+
+  async fetchQuote() {
     const { changeColor } = this.props;
     changeColor();
     this.changeOpacity();
-    setTimeout(() => {
-      fetch('https://api.quotable.io/random')
-        .then((response) => response.json())
-        .then((data) => {
-          this.changeQuote(data.content, data.author);
-          this.changeOpacity();
-        });
-    }, 300);
+
+    await new Promise((resolve) => {
+      const timeoutId = setTimeout(resolve, 300);
+      this.setState({ timeoutId });
+    });
+
+    fetch('https://api.quotable.io/random')
+      .then((response) => response.json())
+      .then((data) => {
+        this.changeQuote(data.content, data.author);
+        this.changeOpacity();
+      });
   }
 
   changeQuote(quote, author) {
