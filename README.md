@@ -2,7 +2,7 @@
 
 ## Explanation
 
-I have to create 5 projects in order to earn the Front End Development certification delivered by FreeCodeCamp. This repository is the first one : Random Quote Machine. I used [my own React boilerplate](https://github.com/lamai6/react-app-starter) to start creating this application. You can [read the specifications](https://github.com/lamai6/random-quote-machine#specifications) the app must meet or [run it](https://github.com/lamai6/random-quote-machine#quick-start).
+I have to create 5 projects in order to earn the Front End Development certification delivered by FreeCodeCamp. This repository is the first one : Random Quote Machine. I used [my own React boilerplate](https://github.com/lamai6/react-app-starter) to start creating this application. You can [run it](https://github.com/lamai6/random-quote-machine#quick-start), [view the demo](https://lamai6.github.io/random-quote-machine) or [read the specifications](https://github.com/lamai6/random-quote-machine#specifications) the app must meet.
 
 ## Quick start
 
@@ -12,7 +12,7 @@ I have to create 5 projects in order to earn the Front End Development certifica
 4. Run `npm install` in order to install dependencies
 5. At this point you can run `npm start` to see the React app at http://localhost:8080
 
-## [Specifications](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine)
+## Specifications
 
 Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/qRZeGZ.
 
@@ -47,3 +47,11 @@ You can build your project by using this CodePen template and clicking Save to c
 Once you're done, submit the URL to your working project with all its tests passing.
 
 Note: Twitter does not allow links to be loaded in an iframe. Try using the target="_blank" or target="_top" attribute on the #tweet-quote element if your tweet won't load. target="_top" will replace the current tab so make sure your work is saved.
+
+## Exam validation
+
+To ensure this project meets the specifications, FreeCodeCamp has a script that automatically run its own tests. You can run these tests following these steps:
+- start the app or go to the project [demo](https://lamai6.github.io/random-quote-machine)
+- click on the side menu at the top left of the page
+- select the "Random Quote Machine" project from the drop-down menu
+- click on "Run Tests" button
