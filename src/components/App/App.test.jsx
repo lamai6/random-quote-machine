@@ -1,54 +1,50 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from './App';
 
-describe('Count incrementation', () => {
-  it('should increment counter when clicking on increment button', () => {
-    render(<App />);
-    const title = screen.getByRole('heading', { name: /counter/i });
-    const incButton = screen.getByRole('button', { name: /increment/i });
+beforeAll(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          content:
+            'Make the most of yourself, for that is all there is of you.',
+          author: 'Ralph Waldo Emerson',
+        }),
+    })
+  );
 
-    expect(title).toHaveTextContent('Counter: 0');
-    fireEvent.click(incButton);
-    expect(title).toHaveTextContent('Counter: 1');
-  });
+  global.waitMs = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
 });
 
-describe('Count decrementation', () => {
-  it('should decrement counter when clicking on decrement button', () => {
-    render(<App />);
-    const title = screen.getByRole('heading', { name: /counter/i });
-    const incButton = screen.getByRole('button', { name: /increment/i });
-    const decButton = screen.getByRole('button', { name: /decrement/i });
+describe('App component tests', () => {
+  it('should change background color when mounting', async () => {
+    const { container } = render(<App />);
+    await global.waitMs(500);
 
-    fireEvent.click(incButton);
-    expect(title).toHaveTextContent('Counter: 1');
-    fireEvent.click(decButton);
-    expect(title).toHaveTextContent('Counter: 0');
+    const pageContainer = container.querySelector('div[id=container]');
+
+    expect(pageContainer.style).toHaveProperty('backgroundColor');
+    expect(pageContainer.style.backgroundColor).not.toBe('rgb(255, 255, 255)');
   });
 
-  it('should not decrement counter under 0 when clicking on decrement button', () => {
-    render(<App />);
-    const title = screen.getByRole('heading', { name: /counter/i });
-    const decButton = screen.getByRole('button', { name: /decrement/i });
+  it('should change background color when clicking on button', async () => {
+    const { container, findByRole } = render(<App />);
+    await global.waitMs(500);
 
-    expect(title).toHaveTextContent('Counter: 0');
-    fireEvent.click(decButton);
-    expect(title).toHaveTextContent('Counter: 0');
-  });
-});
+    let pageContainer = container.querySelector('div[id=container]');
+    const prevBgColor = pageContainer.style.backgroundColor;
 
-describe('Count reset', () => {
-  it('should reset counter when clicking on reset button', () => {
-    render(<App />);
-    const title = screen.getByRole('heading', { name: /counter/i });
-    const incButton = screen.getByRole('button', { name: /increment/i });
-    const resButton = screen.getByRole('button', { name: /reset/i });
+    const newQuoteButton = await findByRole('button', { name: 'New quote' });
+    fireEvent.click(newQuoteButton);
+    await global.waitMs(500);
+    pageContainer = container.querySelector('div[id=container]');
+    const nextBgColor = pageContainer.style.backgroundColor;
 
-    fireEvent.click(incButton);
-    fireEvent.click(incButton);
-    expect(title).toHaveTextContent('Counter: 2');
-    fireEvent.click(resButton);
-    expect(title).toHaveTextContent('Counter: 0');
+    expect(pageContainer.style).toHaveProperty('backgroundColor');
+    expect(prevBgColor).not.toBe(nextBgColor);
   });
 });
