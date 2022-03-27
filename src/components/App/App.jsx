@@ -12,8 +12,12 @@ class App extends Component {
   }
 
   changeColor() {
-    const color = Math.floor(Math.random() * 16777215).toString(16);
-    this.setState({ color });
+    const { color } = this.state;
+    let newColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    while (color === newColor) {
+      newColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    }
+    this.setState({ color: newColor });
   }
 
   render() {
