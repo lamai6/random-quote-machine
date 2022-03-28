@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { brands, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './QuoteBox.styles.scss';
 
 class QuoteBox extends Component {
@@ -61,6 +61,11 @@ class QuoteBox extends Component {
     return (
       <div id="quote-box">
         <h1 className={opacity ? 'change' : ''} id="text">
+          <FontAwesomeIcon
+            icon={solid('quote-left')}
+            size="lg"
+            style={{ marginRight: '0.4em' }}
+          />
           {quote}
         </h1>
         <p className={opacity ? 'change' : ''} id="author">
