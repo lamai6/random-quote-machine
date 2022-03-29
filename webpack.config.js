@@ -54,8 +54,9 @@ module.exports = {
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React App',
+      title: 'Random Quote Machine',
       inject: false,
+      favicon: './src/assets/images/favicon.png',
       templateContent: ({ htmlWebpackPlugin }) => `
                 <html>
                     <head>
