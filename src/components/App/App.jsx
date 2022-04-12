@@ -10,6 +10,7 @@ class App extends Component {
       color: '#fff',
     };
     this.changeColor = this.changeColor.bind(this);
+    localStorage.setItem('project_selector', 'random-quote-machine');
   }
 
   changeColor() {
