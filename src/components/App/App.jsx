@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import GitHub from '../GitHub/GitHub';
-import Info from '../Info/Info';
 import './App.styles.scss';
 
 class App extends Component {
@@ -28,7 +27,6 @@ class App extends Component {
     return (
       <div id="container" style={{ backgroundColor: color, color }}>
         <QuoteBox bgColor={color} changeColor={this.changeColor} />
-        <Info />
         <GitHub />
       </div>
     );
