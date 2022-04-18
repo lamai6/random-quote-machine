@@ -24,6 +24,7 @@ function GitHub() {
       onMouseEnter={increaseOpacity}
       onMouseLeave={decreaseOpacity}
       style={style}
+      id="github-logo-box"
     >
       <a
         href={ghRepoUrl}
