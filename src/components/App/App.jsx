@@ -11,6 +11,7 @@ class App extends Component {
     };
     this.changeColor = this.changeColor.bind(this);
     localStorage.setItem('project_selector', 'random-quote-machine');
+    localStorage.setItem('fCC_random-quote-machine_hide', 'true');
   }
 
   changeColor() {
